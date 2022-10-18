@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+    int low, high, temp, number, originalNum, remainder, count =0;
+    double result = 0.0;
+    printf("Enter two numbers (intervals): ");
+    scanf("%d %d",&low,&high);
+    if (low>high){
+        temp = high;
+        high = low;
+        low = temp;
+    }
+    printf("Armstrong numbers between %d and %d are:\n",low,high);
+    for (number = low+1; number < high; ++number){
+        originalNum = number;
+        while (originalNum!=0)
+        {
+            originalNum/=10;
+            ++count;
+        }
+        originalNum = number;
+        while (originalNum!=0)
+        {
+            remainder = originalNum%10;
+            result+= pow(remainder, count);
+            originalNum/=10;
+        }
+        if ((int)result == number){
+            printf("%d ", number);
+        }
+        count = 0;
+        result = 0;
+    }
+    return 0;
+}
